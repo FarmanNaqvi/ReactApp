@@ -51,9 +51,9 @@ pipeline {
                         ssh -i $SSH_KEY -o StrictHostKeyChecking=no $PROD_SERVER '
                             mkdir -p $DEPLOY_PATH &&
                             cd $DEPLOY_PATH &&
-                            docker-compose down || true &&
-                            docker-compose pull &&
-                            docker-compose up -d --remove-orphans
+                            docker compose down || true &&
+                            docker compose pull &&
+                            docker compose up -d --remove-orphans
                         '
                     """
                 }
