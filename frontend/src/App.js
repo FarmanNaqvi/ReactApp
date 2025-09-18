@@ -4,7 +4,7 @@ function App() {
   const [joke, setJoke] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/joke")
+    fetch('http://ec2-13-60-17-158.eu-north-1.compute.amazonaws.com:5000/api/data')
       .then((res) => res.json())
       .then((data) => setJoke(data))
       .catch((err) => console.error(err));
