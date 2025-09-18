@@ -49,12 +49,24 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY')]) {
                     sh """
                         ssh -i $SSH_KEY -o StrictHostKeyChecking=no $PROD_SERVER '
-                            mkdir -p $DEPLOY_PATH &&
-                            cd $DEPLOY_PATH &&
-                            docker compose down || true &&
-                            docker compose pull &&
-                            docker compose up -d --remove-orphans
-                        '
+# Create deploy path if missing
+                    mkdir -p $DEPLOY_PATH
+
+                    cd $DEPLOY_PATH
+
+                    # If git repo exists, pull latest changes; else clone
+                    if [ -d ".git" ]; then
+                        git reset --hard
+                        git pull origin main
+                    else
+                        git clone -b main https://github.com/FarmanNaqvi/ReactApp.git .
+                    fi
+
+                    # Run Docker Compose (new syntax)
+                    docker compose down || true
+                    docker compose pull
+                    docker compose up -d --remove-orphans
+                       '
                     """
                 }
             }
