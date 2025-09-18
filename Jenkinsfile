@@ -46,7 +46,7 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'prod-server-key', keyFileVariable: 'SSH_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY')]) {
                     sh """
                         ssh -i $SSH_KEY -o StrictHostKeyChecking=no $PROD_SERVER '
                             mkdir -p $DEPLOY_PATH &&
