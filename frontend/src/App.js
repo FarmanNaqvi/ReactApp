@@ -4,7 +4,7 @@ function App() {
   const [joke, setJoke] = useState(null);
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL)   // ✅ use env var
+    fetch("/api/joke")
       .then((res) => res.json())
       .then((data) => setJoke(data))
       .catch((err) => console.error(err));

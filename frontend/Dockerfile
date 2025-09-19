@@ -1,4 +1,4 @@
-# frontend/Dockerfile
+	# frontend/Dockerfile
 FROM node:20-alpine AS build
 
 WORKDIR /app
@@ -12,8 +12,8 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built React files
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy Nginx default config (optional)
 EXPOSE 80
