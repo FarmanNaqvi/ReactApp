@@ -6,6 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ enable CORS for all routes
+app.use(cors());
+
+// Middleware (if any)
+app.use(express.json());
+
 app.get("/api/joke", async (req, res) => {
   try {
     const response = await fetch("https://official-joke-api.appspot.com/random_joke");
