@@ -16,3 +16,5 @@ services:
       - "80:80"   # React app served by Nginx on port 80, mapped to 3000
     depends_on:
       - backend
+environment:
+      - REACT_APP_API_URL=http://backend:5000/api/joke
