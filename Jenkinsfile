@@ -8,7 +8,7 @@ pipeline {
         FRONTEND_IMAGE = "${REGISTRY}/my-frontend:latest"
 
         // Production server
-        PROD_SERVER = "ubuntu@ec2-16.171.172.175.eu-north-1.compute.amazonaws.com"
+        PROD_SERVER = "ubuntu@ec2-16-171-172-175.eu-north-1.compute.amazonaws.com"
         DEPLOY_PATH = "/home/ubuntu/reactapp"
 
         // App-specific environment variables
